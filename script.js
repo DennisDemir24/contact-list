@@ -47,6 +47,15 @@ contacts = [
 
 window.onload = function () {
   function render() {
+    init();
+    showContacts();
+    searchContacts();
+  }
+
+  render();
+
+  // Initilize the content on the page - call init in render funtion to render to screen
+  function init() {
     document.getElementById("contact-list").innerHTML = "";
 
     for (var i = 0; i < contacts.length; i++) {
@@ -84,7 +93,10 @@ window.onload = function () {
 
       document.getElementById("contact-list").appendChild(el);
     }
+  }
 
+  // Filter and hide contacts
+  function showContacts() {
     document.getElementById('contactFilter').onclick = function (e) {
       var contactNames = document.querySelectorAll('.contactName');
 
@@ -104,7 +116,10 @@ window.onload = function () {
         })
       }
     };
+  }
 
+  // Contact search
+  function searchContacts() {
     document.getElementById('search-button').onclick = function () {
       var contactNames = document.querySelectorAll('.contactName');
       contactNames.forEach(function (node) {
@@ -115,9 +130,6 @@ window.onload = function () {
           node.setAttribute("class", "hidden contactName");
         }
       })
-
     }
   }
-
-  render();
 };
